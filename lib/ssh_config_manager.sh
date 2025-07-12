@@ -82,7 +82,6 @@ importation_ssh_config(){
         exit 1
     }
 
-    # Récupérer le HOME de l'utilisateur qui a lancé sudo, de manière robuste
     ORIGINAL_USER_HOME="$SUDO_HOME"
     if [ -z "$ORIGINAL_USER_HOME" ] && [ -n "$SUDO_USER" ]; then
         ORIGINAL_USER_HOME=$(getent passwd "$SUDO_USER" | cut -d: -f6)
@@ -113,7 +112,7 @@ importation_ssh_config(){
     echo "Hôtes disponibles :"
     for i in "${!HOSTS[@]}"; do
         echo "  $((i+1)). ${HOSTS[$i]}"
-    done # <--- La ligne corrigée se termine ici, le `K` a été retiré.
+    done
 
     read -p "Sélectionnez le numéro de l'hôte à importer (exemple 1) ou 'all' pour tout importer, et vide pour annuler : " choix
 
